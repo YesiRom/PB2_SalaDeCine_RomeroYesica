@@ -6,7 +6,7 @@ import ar.edu.unlam.pb2.*;
 ;
 
 
-public class main {
+public class Main {
 
  private static Scanner scanner = new Scanner(System.in); 
  private static SalaCine sala;
@@ -50,12 +50,14 @@ public class main {
 		        peliculas[6] = new PeliculaDrama("El Padrino", 175, 16);
 		        
 		        // Películas de Terror
-		        peliculas[7] = new PeliculaTerror("El Conjuro", 112);
-		        peliculas[8] = new PeliculaTerror("Scream", 111);
+		        peliculas[7] = new PeliculaTerror("El Conjuro", 112, 16);
+		        peliculas[8] = new PeliculaTerror("Scream", 111, 16);
 		        
 		        // Película Infantil
 		        peliculas[9] = new PeliculaInfantil("Frozen", 102, 0);
 		    }
+		    
+// LOGICA DEL MENU
 		    
 		    private static void mostrarMenuPrincipal() {
 		        int opcion;
@@ -116,6 +118,8 @@ public class main {
 		        } while (opcion != 0);
 		    }
 		    
+// OPCION 1 : GESTIONAR PELICULA
+		    
 		    private static void gestionarPeliculas() {
 		        System.out.println("\n🎬 CATÁLOGO DE PELÍCULAS DISPONIBLES");
 		        System.out.println("=".repeat(50));
@@ -156,6 +160,8 @@ public class main {
 		        return "GENERAL";
 		    }
 		    
+// OPCION 2: VENDER BOLETO
+		    
 		    private static void venderBoleto() {
 		        if (sala.getPeliculaActual() == null) {
 		            System.out.println("❌ No hay película en cartelera. Primero seleccione una película.");
@@ -189,6 +195,8 @@ public class main {
 		        }
 		    }
 		    
+// OPCION 3: LIBERAR ASIENTOS
+		    
 		    private static void liberarAsiento() {
 		        System.out.println("\n🔓 LIBERAR ASIENTO");
 		        sala.mostrarButacas();
@@ -206,6 +214,8 @@ public class main {
 		        }
 		    }
 		    
+//OPCION 5: MOSTRAR INFO PELICULA
+		    
 		    private static void mostrarInfoPelicula() {
 		        if (sala.getPeliculaActual() != null) {
 		            System.out.println("\n📋 INFORMACIÓN DE LA PELÍCULA ACTUAL");
@@ -214,6 +224,8 @@ public class main {
 		            System.out.println("❌ No hay película en cartelera actualmente.");
 		        }
 		    }
+		    
+// OPCION 7: REINICIAR SALA
 		    
 		    private static void reiniciarSala() {
 		        System.out.print("⚠️  ¿Está seguro que desea liberar todos los asientos? (s/n): ");
@@ -227,6 +239,8 @@ public class main {
 		            System.out.println("❌ Operación cancelada.");
 		        }
 		    }
+
+// OPCION 4: MOSTRAR BUTACAS
 		    
 		    public void mostrarButacas(SalaCine sala) {
 		    	Asiento[][] butacas = sala.getButacas();
