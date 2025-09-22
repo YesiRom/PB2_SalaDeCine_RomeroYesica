@@ -22,14 +22,15 @@ public class SalaCine {
 		return butacas;
 	}
 
-	public Object getPeliculaActual() {
+	public Pelicula getPeliculaActual() {
 		
-		return null;
+		
+		return pelicula;
 	}
 
 	public String getTitulo() {
 		
-		return null;
+		return pelicula.getTitulo();
 	}
 
 	public int contarAsientosOcupados() {
@@ -50,14 +51,55 @@ public class SalaCine {
 		return butacas.length * butacas[0].length ;
 	}
 
-	public void cambiarPelicula(Pelicula nuevaPelicula) {
+	public void proyectarPelicula(Pelicula nuevaPelicula) {
 		
-		
+		this.pelicula = nuevaPelicula;
 	}
 
 	public boolean venderBoleto(int fila, int columna, int edad, String nombreComprador) {
 		
+		
+		
 		return false;
+	}
+
+	public String mostrarButacas() {
+		 StringBuilder sb = new StringBuilder();
+	        sb.append("Sala de cine (O = libre, X = ocupada):\n\n");
+
+	        for (int i = 0; i < butacas.length; i++) {
+	            for (int j = 0; j < butacas[i].length; j++) {
+	                sb.append(butacas[i][j].estaOcupado() ? "X " : "O ");
+	            }
+	            sb.append("\n");
+	        }
+	        return sb.toString();
+		
+		
+		}
+
+	public boolean liberarAsiento(int fila, int columna) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void cambiarPelicula(Pelicula nuevaPelicula) {
+		pelicula = nuevaPelicula;
+		
+	}
+
+	public void reiniciarSala() {
+		for(int i= 0; i< this.butacas.length ; i++) {
+			for(int j = 0; j< this.butacas[i].length; j++) {
+				butacas[i][j] = null;
+				}
+			}
+		pelicula = null;
+	}
+
+	public void mostrarButacasDetalle() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

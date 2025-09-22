@@ -6,7 +6,7 @@ import ar.edu.unlam.pb2.*;
 ;
 
 
-public class Main {
+public class GestionDeSalaDeCine {
 
  private static Scanner scanner = new Scanner(System.in); 
  private static SalaCine sala;
@@ -90,7 +90,7 @@ public class Main {
 		                    liberarAsiento();
 		                    break;
 		                case 4:
-		                    mostrarButacas(sala);
+		                    mostrarButacas();
 
 		                    break;
 		                case 5:
@@ -172,7 +172,7 @@ public class Main {
 		        System.out.println("Película actual: " + sala.getPeliculaActual().getTitulo());
 		        System.out.println("Edad mínima requerida: " + sala.getPeliculaActual().getEdadMinima() + " años");
 		        
-		        sala.mostrarButacas();
+		        System.out.println(sala.mostrarButacas());
 		        
 		        System.out.print("Ingrese el nombre del comprador: ");
 		        scanner.nextLine(); // Limpiar buffer
@@ -189,7 +189,7 @@ public class Main {
 		        
 		        if (exito) {
 		            System.out.println("🎉 ¡Boleto vendido exitosamente!");
-		            sala.mostrarButacas();
+		            System.out.println(sala.mostrarButacas());
 		        } else {
 		            System.out.println("❌ No se pudo vender el boleto.");
 		        }
@@ -242,7 +242,7 @@ public class Main {
 
 // OPCION 4: MOSTRAR BUTACAS
 		    
-		    public void mostrarButacas(SalaCine sala) {
+		    public static void mostrarButacas() {
 		    	Asiento[][] butacas = sala.getButacas();
 		    	
 		    	System.out.println("\n=== ESTADO DE LA SALA ===");
@@ -267,7 +267,7 @@ public class Main {
 		        System.out.println("O = Libre, X = Ocupado\n");
 		    }
 
-		    public void cambiarPelicula(Pelicula nuevaPelicula) {
+		    public static void cambiarPelicula(Pelicula nuevaPelicula) {
 		    	sala.cambiarPelicula(nuevaPelicula);
 		    	System.out.println("Pelicula cambiada a: " + nuevaPelicula.getTitulo());
 		    }
