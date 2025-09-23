@@ -42,23 +42,32 @@ public class GestionDeSalaDeCine {
 		    private static void cargarPeliculasDefault() {
 		        // Películas de Acción
 		        peliculas[0] = new PeliculaAccion("Misión Imposible", 150, 13);
+		        peliculas[0].setSinopsis("Un espía hace misiones muy difíciles para salvar al mundo. Hay mucha acción y peligro.");
 		        peliculas[1] = new PeliculaAccion("John Wick 4", 169, 16);
+		        peliculas[1].setSinopsis("John Wick pelea contra muchos enemigos para ser libre. Hay mucha acción y peleas.");
 		        peliculas[2] = new PeliculaAccion("Top Gun: Maverick", 130, 13);
+		        peliculas[2].setSinopsis("Un piloto vuela aviones muy rápido y hace misiones peligrosas. Hay emoción y velocidad.");
 		        
 		        // Películas de Comedia
 		        peliculas[3] = new PeliculaComedia("La Máscara", 120, 7);
+		        peliculas[3].setSinopsis("Un hombre se pone una máscara mágica y se vuelve muy loco y divertido.");
 		        peliculas[4] = new PeliculaComedia("Shrek", 90, 0);
-		        
+		        peliculas[4].setSinopsis("Shrek es un ogro que vive solo. Conoce amigos y vive aventuras divertidas.");
 		        // Películas de Drama
 		        peliculas[5] = new PeliculaDrama("Forrest Gump", 142, 13);
+		        peliculas[5].setSinopsis("Forrest Gump es un hombre bueno que vive muchas aventuras sin buscarlo.");
 		        peliculas[6] = new PeliculaDrama("El Padrino", 175, 16);
+		        peliculas[6].setSinopsis("Un padre y su hijo están en una familia mafiosa. Hay peleas, secretos y poder.");
 		        
 		        // Películas de Terror
 		        peliculas[7] = new PeliculaTerror("El Conjuro", 112, 16);
+		        peliculas[7].setSinopsis("Una familia tiene fantasmas en su casa. Dos personas van a ayudarlos.");
 		        peliculas[8] = new PeliculaTerror("Scream", 111, 16);
+		        peliculas[8].setSinopsis("Un asesino con máscara ataca gente. Todos tienen miedo.");
 		        
 		        // Película Infantil
 		        peliculas[9] = new PeliculaInfantil("Frozen", 102, 0);
+		        peliculas[9].setSinopsis("Dos hermanas viven en un reino con nieve. Una tiene poderes de hielo.");
 		    }
 		    
 // LOGICA DEL MENU
@@ -221,9 +230,11 @@ public class GestionDeSalaDeCine {
 //OPCION 5: MOSTRAR INFO PELICULA
 		    
 		    private static void mostrarInfoPelicula() {
+		    	
 		        if (sala.getPeliculaActual() != null) {
 		            System.out.println("\n📋 INFORMACIÓN DE LA PELÍCULA ACTUAL");
-		            sala.getPeliculaActual().mostrarSinopsis();
+		            System.out.println(sala.getPeliculaActual().mostrarDetalleDePelicula());
+		            System.err.println("Genero: " + obtenerGenero(sala.getPeliculaActual()));
 		        } else {
 		            System.out.println("❌ No hay película en cartelera actualmente.");
 		        }

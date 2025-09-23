@@ -20,9 +20,25 @@ public abstract class Pelicula {
 	}
 
 	public String mostrarSinopsis() {
-		return "la sigiente pelicula se trata de....";
+		return sinopsis;
+	}
+	
+	public void setSinopsis(String descripcion) {
+		this.sinopsis = descripcion;
 	}
 
-	
+	public String mostrarDetalleDePelicula() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Titulo: ").append(titulo);
+		sb.append(System.lineSeparator());
+		sb.append("Duracion: ").append(duracion);
+		sb.append(System.lineSeparator());
+		sb.append("Sinopsis: ").append(sinopsis);
+		sb.append(System.lineSeparator());
+		sb.append("Edad Minina: ").append(edadMinima);
+		
+		return sb.toString();
+	}
 
 }
