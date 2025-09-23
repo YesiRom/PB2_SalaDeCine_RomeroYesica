@@ -11,17 +11,16 @@ public abstract class Pelicula {
 	}
 
 	public String getTitulo() {
-		return "";
+		return titulo;
 	}
 
 	public int getEdadMinima() {
-		// TODO Auto-generated method stub
+		
 		return edadMinima;
 	}
 
-	public void mostrarSinopsis() {
-		
-		
+	public String mostrarSinopsis() {
+		return "la sigiente pelicula se trata de....";
 	}
 
 	

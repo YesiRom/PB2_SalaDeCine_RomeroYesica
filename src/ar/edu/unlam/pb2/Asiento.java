@@ -9,5 +9,13 @@ public class Asiento {
 		
 		return estado;
 	}
+	
+	public void ocuparAsiento() {
+		estado= true;
+	}
+	
+	public void liberarAsiento() {
+		estado = false;
+	}
 
 }

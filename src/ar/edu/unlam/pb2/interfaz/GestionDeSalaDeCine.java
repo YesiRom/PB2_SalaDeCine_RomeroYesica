@@ -10,7 +10,11 @@ public class GestionDeSalaDeCine {
 
  private static Scanner scanner = new Scanner(System.in); 
  private static SalaCine sala;
- private static Pelicula[] peliculas = new Pelicula[100];
+ private static Pelicula[] peliculas = new Pelicula[10];
+//Códigos de color ANSI
+ private static final String ROJO = "\u001B[31m";
+ private static final String VERDE = "\u001B[32m";
+ private static final String RESET = "\u001B[0m";
 		    
      public static void main(String[] args) {
     	 
@@ -139,10 +143,10 @@ public class GestionDeSalaDeCine {
 		        if (opcion >= 1 && opcion <= 10) {
 		            Pelicula peliculaSeleccionada = peliculas[opcion - 1];
 		            cambiarPelicula(peliculaSeleccionada);
-		            peliculaSeleccionada.mostrarSinopsis();
+		            System.out.println(peliculaSeleccionada.mostrarSinopsis());
 		        } else if (opcion == 11) {
 		            if (sala.getPeliculaActual() != null) {
-		                sala.getPeliculaActual().mostrarSinopsis();
+		            	System.out.println(sala.getPeliculaActual().mostrarSinopsis());
 		            } else {
 		                System.out.println("❌ No hay película en cartelera actualmente.");
 		            }
@@ -172,7 +176,7 @@ public class GestionDeSalaDeCine {
 		        System.out.println("Película actual: " + sala.getPeliculaActual().getTitulo());
 		        System.out.println("Edad mínima requerida: " + sala.getPeliculaActual().getEdadMinima() + " años");
 		        
-		        System.out.println(sala.mostrarButacas());
+		        mostrarButacas();
 		        
 		        System.out.print("Ingrese el nombre del comprador: ");
 		        scanner.nextLine(); // Limpiar buffer
@@ -185,11 +189,11 @@ public class GestionDeSalaDeCine {
 		        System.out.print("Ingrese la edad del cliente: ");
 		        int edad = scanner.nextInt();
 		        
-		        boolean exito = sala.venderBoleto(fila, columna, edad, nombreComprador);
+		        boolean exito = sala.venderBoleto(fila, columna, new Cliente(nombreComprador, edad));
 		        
 		        if (exito) {
 		            System.out.println("🎉 ¡Boleto vendido exitosamente!");
-		            System.out.println(sala.mostrarButacas());
+		            mostrarButacas();
 		        } else {
 		            System.out.println("❌ No se pudo vender el boleto.");
 		        }
@@ -199,7 +203,7 @@ public class GestionDeSalaDeCine {
 		    
 		    private static void liberarAsiento() {
 		        System.out.println("\n🔓 LIBERAR ASIENTO");
-		        sala.mostrarButacas();
+		        mostrarButacas();
 		        
 		        System.out.print("Ingrese la fila del asiento a liberar: ");
 		        int fila = scanner.nextInt();
@@ -210,7 +214,7 @@ public class GestionDeSalaDeCine {
 		        
 		        if (exito) {
 		            System.out.println("🎉 ¡Asiento liberado exitosamente!");
-		            sala.mostrarButacas();
+		           mostrarButacas();
 		        }
 		    }
 		    
@@ -234,38 +238,46 @@ public class GestionDeSalaDeCine {
 		        
 		        if (confirmacion.equalsIgnoreCase("s") || confirmacion.equalsIgnoreCase("si")) {
 		            sala.reiniciarSala();
-		            sala.mostrarButacas();
+		            mostrarButacas();
 		        } else {
 		            System.out.println("❌ Operación cancelada.");
 		        }
 		    }
 
 // OPCION 4: MOSTRAR BUTACAS
-		    
-		    public static void mostrarButacas() {
-		    	Asiento[][] butacas = sala.getButacas();
-		    	
-		    	System.out.println("\n=== ESTADO DE LA SALA ===");
+		    	public static void mostrarButacas() {
+		        Asiento[][] butacas = sala.getButacas();
+
+		        System.out.println("\n=== ESTADO DE LA SALA ===");
 		        if (sala.getPeliculaActual() != null) {
-		            System.out.println("🎬 Película: " + sala.getTitulo());
+		            System.out.println("🎬 Película: " + sala.getPeliculaActual().getTitulo());
 		        }
 		        System.out.println("📊 Ocupación: " + sala.contarAsientosOcupados() + "/" + sala.getTotalAsientos() + " asientos");
+
+		        // Encabezado con números de columna
 		        System.out.print("   ");
 		        for (int j = 0; j < butacas[0].length; j++) {
 		            System.out.printf("%3d", j);
 		        }
 		        System.out.println();
-		        
+
+		        // Filas de butacas
 		        for (int i = 0; i < butacas.length; i++) {
 		            System.out.printf("%2d ", i);
 		            for (int j = 0; j < butacas[i].length; j++) {
-		                char estado = butacas[i][j].estaOcupado() ? 'X' : 'O';
-		                System.out.printf("%3c", estado);
+		                if (butacas[i][j] != null && butacas[i][j].estaOcupado()) {
+		                    System.out.printf("%s%3c%s", ROJO, 'X', RESET); // Rojo para ocupadas
+		                } else {
+		                    System.out.printf("%s%3c%s", VERDE, 'O', RESET); // Verde para libres
+		                }
 		            }
 		            System.out.println();
 		        }
-		        System.out.println("O = Libre, X = Ocupado\n");
+
+		        System.out.println("🟢 O = Libre, 🔴 X = Ocupado\n");
 		    }
+		    	
+		   
 
 		    public static void cambiarPelicula(Pelicula nuevaPelicula) {
 		    	sala.cambiarPelicula(nuevaPelicula);
@@ -274,4 +286,4 @@ public class GestionDeSalaDeCine {
 
 	}
 
-}
+

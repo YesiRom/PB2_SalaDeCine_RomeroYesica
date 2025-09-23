@@ -9,6 +9,7 @@ public class SalaCine {
 		asignarAsientos(filas, columnas);
 	}
 	
+	// LOGICA DE BUTACAS (Asientos) --> inicializa los asientos, total de asientos y cuantos estan ocupados. libera un asiento.
 	private void asignarAsientos(int filas, int columnas) {
 		for(int i= 0; i < filas; i++) {
 			for(int j = 0; j < columnas; j++) {
@@ -21,23 +22,12 @@ public class SalaCine {
 		
 		return butacas;
 	}
-
-	public Pelicula getPeliculaActual() {
-		
-		
-		return pelicula;
-	}
-
-	public String getTitulo() {
-		
-		return pelicula.getTitulo();
-	}
-
+	
 	public int contarAsientosOcupados() {
 		int contador =0;
 		for(int i= 0; i< this.butacas.length ; i++) {
 			for(int j = 0; j< this.butacas[i].length; j++) {
-				if(butacas[i][j].estaOcupado()) {
+				if(butacas[i][j] != null && butacas[i][j].estaOcupado()) {
 					contador++;
 				}
 			}
@@ -50,43 +40,45 @@ public class SalaCine {
 		
 		return butacas.length * butacas[0].length ;
 	}
-
-	public void proyectarPelicula(Pelicula nuevaPelicula) {
-		
-		this.pelicula = nuevaPelicula;
-	}
-
-	public boolean venderBoleto(int fila, int columna, int edad, String nombreComprador) {
-		
-		
-		
-		return false;
-	}
-
-	public String mostrarButacas() {
-		 StringBuilder sb = new StringBuilder();
-	        sb.append("Sala de cine (O = libre, X = ocupada):\n\n");
-
-	        for (int i = 0; i < butacas.length; i++) {
-	            for (int j = 0; j < butacas[i].length; j++) {
-	                sb.append(butacas[i][j].estaOcupado() ? "X " : "O ");
-	            }
-	            sb.append("\n");
-	        }
-	        return sb.toString();
-		
-		
-		}
-
+	
 	public boolean liberarAsiento(int fila, int columna) {
-		// TODO Auto-generated method stub
+		 if(existeButaca(fila, columna) && butacas[fila][columna].estaOcupado()) {
+			 butacas[fila][columna].liberarAsiento();
+		 }
 		return false;
 	}
 
+ //LOGICA CON PELICULA --> proyecta una pelicula, devuelve con get pelicula acual y titulo
 	public void cambiarPelicula(Pelicula nuevaPelicula) {
 		pelicula = nuevaPelicula;
 		
 	}
+	public Pelicula getPeliculaActual() {
+				
+		return pelicula;
+	}
+
+		
+
+	public boolean venderBoleto(int fila, int columna, Cliente cliente) {
+		if(existeButaca(fila, columna) && !butacas[fila][columna].estaOcupado() && edadMinimaValida(cliente)) {
+			butacas[fila][columna].ocuparAsiento();
+			return true;
+		}
+		
+		return false;
+	}
+
+	private boolean edadMinimaValida(Cliente cliente) {
+		return pelicula.getEdadMinima() < cliente.getEdad();
+	}
+
+		
+	private boolean existeButaca(int fila, int columna) {
+		return butacas.length >= fila && butacas[0].length >= columna;
+	}
+
+	
 
 	public void reiniciarSala() {
 		for(int i= 0; i< this.butacas.length ; i++) {

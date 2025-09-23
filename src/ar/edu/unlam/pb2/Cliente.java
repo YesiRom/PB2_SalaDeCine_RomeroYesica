@@ -5,6 +5,7 @@ public class Cliente {
 	private int edad;
 	
 	public Cliente(String nombre, int edad) {
+		validarEdad(edad);
 		this.nombre = nombre;
 		this.edad = edad;
 	}
@@ -14,5 +15,15 @@ public class Cliente {
 	}
 	
 	
+	
+	public int getEdad() {
+		return edad;
+	}
+
+	public void validarEdad(int edad) {
+		if(edad <= 0 || edad > 110) {
+			throw new IllegalArgumentException("Debe ingresar una edad valida. No puede ser negativa, ni mayor a 110.");
+		}
+	}
 
 }
