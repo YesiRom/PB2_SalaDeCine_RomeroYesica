@@ -44,6 +44,7 @@ public class SalaCine {
 	public boolean liberarAsiento(int fila, int columna) {
 		 if(existeButaca(fila, columna) && butacas[fila][columna].estaOcupado()) {
 			 butacas[fila][columna].liberarAsiento();
+			 return true;
 		 }
 		return false;
 	}
@@ -75,7 +76,8 @@ public class SalaCine {
 
 		
 	private boolean existeButaca(int fila, int columna) {
-		return butacas.length >= fila && butacas[0].length >= columna;
+		return fila >= 0 && fila < butacas.length 
+		        && columna >= 0 && columna < butacas[0].length;
 	}
 
 	

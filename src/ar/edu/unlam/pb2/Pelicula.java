@@ -1,5 +1,7 @@
 package ar.edu.unlam.pb2;
 
+import java.util.Objects;
+
 public abstract class Pelicula {
 	private String titulo, sinopsis;
 	private int duracion, edadMinima;
@@ -39,6 +41,19 @@ public abstract class Pelicula {
 		sb.append("Edad Minina: ").append(edadMinima);
 		
 		return sb.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(duracion, edadMinima, titulo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Pelicula p)) {
+			return false;
+		}
+		return titulo.equals(p.titulo) && duracion == p.duracion && edadMinima == p.edadMinima;	
 	}
 
 }
