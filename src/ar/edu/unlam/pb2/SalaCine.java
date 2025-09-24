@@ -61,6 +61,7 @@ public class SalaCine {
 
 		
 
+	//LOGICA para vender boletos
 	public boolean venderBoleto(int fila, int columna, Cliente cliente) {
 		if(existeButaca(fila, columna) && !butacas[fila][columna].estaOcupado() && edadMinimaValida(cliente)) {
 			butacas[fila][columna].ocuparAsiento(cliente);
@@ -74,7 +75,7 @@ public class SalaCine {
 		return pelicula.getEdadMinima() < cliente.getEdad();
 	}
 
-		
+			
 	private boolean existeButaca(int fila, int columna) {
 		return fila >= 0 && fila < butacas.length 
 		        && columna >= 0 && columna < butacas[0].length;
