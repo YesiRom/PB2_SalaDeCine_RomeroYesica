@@ -17,6 +17,7 @@ public class Asiento {
 	
 	public void liberarAsiento() {
 		estado = false;
+		ocupante = null;
 	}
 
 	public Cliente getOcupante() {

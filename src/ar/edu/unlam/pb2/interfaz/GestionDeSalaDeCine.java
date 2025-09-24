@@ -21,7 +21,7 @@ public class GestionDeSalaDeCine {
 		        inicializarSistema();
 		        mostrarMenuPrincipal();
 		    }
-		    
+		  
 		    private static void inicializarSistema() {
 		        System.out.println("🎬 BIENVENIDOS AL SISTEMA DE GESTIÓN DE CINEMA 🎬");
 		        System.out.print("Ingrese el número de filas de la sala: ");
