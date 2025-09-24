@@ -62,7 +62,7 @@ public class SalaCine {
 
 	public boolean venderBoleto(int fila, int columna, Cliente cliente) {
 		if(existeButaca(fila, columna) && !butacas[fila][columna].estaOcupado() && edadMinimaValida(cliente)) {
-			butacas[fila][columna].ocuparAsiento();
+			butacas[fila][columna].ocuparAsiento(cliente);
 			return true;
 		}
 		
@@ -89,9 +89,20 @@ public class SalaCine {
 		pelicula = null;
 	}
 
-	public void mostrarButacasDetalle() {
-		// TODO Auto-generated method stub
+	public String mostrarButacasDetalle() {
+		String detalle= "";
 		
+		for(int i= 0; i< butacas.length; i++) {
+			for(int j= 0; j< butacas[0].length; j++) {
+				if(butacas[i][j] != null && butacas[i][j].estaOcupado()) {
+					detalle += "\nCliente: " + butacas[i][j].getOcupante().getNombre() + "\n" +
+				"Asiento: Fila " + i + "- Columna: " + j + "\n" + 
+				"Pelicula: " + getPeliculaActual().getTitulo() + "\n" +
+				"______________________________________________________________________________________\n";
+				}
+			}
+		}
+		return detalle;
 	}
 
 

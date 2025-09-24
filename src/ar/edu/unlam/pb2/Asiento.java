@@ -10,12 +10,19 @@ public class Asiento {
 		return estado;
 	}
 	
-	public void ocuparAsiento() {
+	public void ocuparAsiento(Cliente ocupante) {
 		estado= true;
+		this.ocupante= ocupante;
 	}
 	
 	public void liberarAsiento() {
 		estado = false;
 	}
+
+	public Cliente getOcupante() {
+		return ocupante;
+	}
+	
+	
 
 }

@@ -110,7 +110,7 @@ public class GestionDeSalaDeCine {
 		                    mostrarInfoPelicula();
 		                    break;
 		                case 6:
-		                    sala.mostrarButacasDetalle();
+		                    mostrarDetalleDeButacasCompradas();
 		                    break;
 		                case 7:
 		                    reiniciarSala();
@@ -131,6 +131,8 @@ public class GestionDeSalaDeCine {
 		        } while (opcion != 0);
 		    }
 		    
+
+
 // OPCION 1 : GESTIONAR PELICULA
 		    
 		    private static void gestionarPeliculas() {
@@ -293,6 +295,11 @@ public class GestionDeSalaDeCine {
 		    public static void cambiarPelicula(Pelicula nuevaPelicula) {
 		    	sala.cambiarPelicula(nuevaPelicula);
 		    	System.out.println("Pelicula cambiada a: " + nuevaPelicula.getTitulo());
+		    }
+		    
+		    private static void mostrarDetalleDeButacasCompradas() {
+		    	System.out.println(sala.mostrarButacasDetalle());
+		    			    	
 		    }
 
 	}
