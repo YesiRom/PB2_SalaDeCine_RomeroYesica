@@ -20,7 +20,7 @@ public class Cliente {
 		return edad;
 	}
 
-	public void validarEdad(int edad) {
+	private void validarEdad(int edad) {
 		if(edad <= 0 || edad > 110) {
 			throw new IllegalArgumentException("Debe ingresar una edad valida. No puede ser negativa, ni mayor a 110.");
 		}
